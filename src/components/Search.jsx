@@ -2,27 +2,30 @@ import React, { useEffect, useState } from "react";
 import Fooddata from "./Carddata";
 import { Cards } from "./Card";
 import {Set} from "./Set";
+ 
 
 const Search = () => {
   const Applogo = "https://i0.wp.com/logotaglines.com/wp-content/uploads/2021/01/Swiggy-Logo-Tagline-Slogan.jpg?fit=1200%2C900&ssl=1";
-    const [ Searchdata, setSearchdata] = useState(Fooddata)
-     const [currdata, setdata] = useState([])
+   
+    const [currdata, setdata] = useState([]) // for current filter data
 
-  const changeData =(e)=>{
-    
-    var InputSearchdata = e.toLowerCase();
-    
-    if(InputSearchdata = ""){
-      setdata(Searchdata)
-    }else{
+    const [filldata, setfilldata] = useState() // for current inputtype data
 
-      var InputSearchdata = e.toLowerCase();
-      let FilterData = currdata.filter((elm )=>  elm.rname.toString().toLowerCase().match(InputSearchdata))
-       
-      setdata(FilterData);
-    }
 
-  }
+    // filter by function and usestate
+  // const changeData =(e)=>{
+  //   var InputSearchdata = e.toLowerCase();
+  //   if(InputSearchdata = ""){
+  //     setdata(Searchdata)
+  //   }else{
+  //     var InputSearchdata = e.toLowerCase();
+  //     let FilterData = currdata.filter((elm )=>  elm.rname.toString().toLowerCase().match(InputSearchdata))
+  //     setdata(FilterData);
+  //   }
+  // }
+
+ 
+
   useEffect(() => {
     setTimeout(() => {
       setdata(Fooddata)
@@ -32,6 +35,7 @@ const Search = () => {
 
   return (
     <>
+       
       <div className="Searchpage">
         <nav className="navbar navbar-expand-lg py-2">
           <div className="container-fluid">
@@ -44,7 +48,8 @@ const Search = () => {
                 className="form-control me-2"
                 type="search"
                 placeholder="Search"
-                onChange={(e)=> changeData(e.target.value)}
+                // onChange={(e)=> changeData(e.target.value)}
+                 onChange={(e)=> setfilldata(e.target.value.toString().toLowerCase())}
               />
               <button className="btn btn-outline-success" type="submit">
                 Search
@@ -58,7 +63,7 @@ const Search = () => {
           </h1>
           <h3 className="section-1-head fs-3 mb-5">Restaurants in Ahmedabad Open now</h3>
           <div className="row">
-          {currdata && currdata.length  ?   <Cards Alldata={currdata} />  : <Set dummy={Searchdata} /> }
+          {currdata && currdata.length  ?   <Cards Alldata={currdata} input={filldata} />  : <Set dummy={Fooddata} /> }
           </div>
         </div>
       </div>
