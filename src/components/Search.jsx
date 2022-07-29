@@ -53,9 +53,10 @@ const Search = () => {
           </div>
         </nav>
         <div className="section-1 container">
-          <h1 className="section-1-head  my-5">
-            Restaurants in Ahmedabad Open now
+          <h1 className="section-1-head  mt-5 mb-2">
+          Search Card Title And Get Results  
           </h1>
+          <h3 className="section-1-head fs-3 mb-5">Restaurants in Ahmedabad Open now</h3>
           <div className="row">
           {currdata && currdata.length  ?   <Cards Alldata={currdata} />  : <Set dummy={Searchdata} /> }
           </div>
